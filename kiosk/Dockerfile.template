@@ -1,0 +1,17 @@
+# FROM balenalib/%%BALENA_ARCH%%-node:18-buster-run
+FROM balenalib/%%BALENA_ARCH%%-alpine-node:18-3.15-run
+
+# Install image viewer feh
+RUN apk add --no-cache feh
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN JOBS=MAX npm install --production --unsafe-perm && npm cache verify && rm -rf /tmp/*
+
+COPY . ./
+
+ENTRYPOINT  ["bash", "entry.sh"]
+
+ENV DISPLAY=:0

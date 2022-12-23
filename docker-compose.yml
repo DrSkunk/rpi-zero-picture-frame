@@ -1,0 +1,50 @@
+version: "2.1"
+
+volumes:
+  x11:
+  photos:
+
+services:
+  kiosk:
+    restart: always
+    build: ./kiosk
+    privileged: true
+    devices:
+      - /dev/dri
+    group_add:
+      - video
+    volumes:
+      - "x11:/tmp/.X11-unix"
+      - "photos:/photos"
+    environment:
+      - WIDTH=800
+      - ALBUM_URL=https://goo.gl/photos/XQ2sGUyPe3swFVga6
+      - CRON=0 0 * * *
+      - DOWNLOAD_LOCATION=/photos
+  wifi-connect:
+    build: ./wifi-connect
+    network_mode: "host"
+    labels:
+      io.balena.features.dbus: "1"
+    cap_add:
+      - NET_ADMIN
+    environment:
+      DBUS_SYSTEM_BUS_ADDRESS: "unix:path=/host/run/dbus/system_bus_socket"
+  # glxgears:
+  #   build: ./glxgears
+  #   restart: always
+  #   devices:
+  #     - /dev/dri
+  #   group_add:
+  #     - video
+  #   volumes:
+  #     - "x11:/tmp/.X11-unix"
+  xserver:
+    # Replace <arch> with your own machines architecture. The default architecture without a - is `amd64`
+    image: balenablocks/xserver
+    restart: always
+    privileged: true
+    environment:
+      - CURSOR=false
+    volumes:
+      - "x11:/tmp/.X11-unix"
