@@ -25,7 +25,7 @@ data:
     - WIDTH: 1366
     - DELAY: 10
     - RELOAD_INTERVAL: 60
-  defaultDeviceType: raspberrypi4-64
+  defaultDeviceType: raspberry-pi
   supportedDeviceTypes:
     - raspberry-pi
     - raspberrypi4-64
