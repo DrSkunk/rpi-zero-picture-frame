@@ -15,7 +15,7 @@ assets:
     type: blob.asset
     data:
       url: >-
-        https://raw.githubusercontent.com/DrSkunk/rpi-zero-picture-frame/tree/main/logo.png
+        https://raw.githubusercontent.com/DrSkunk/rpi-zero-picture-frame/main/logo.png
 data:
   applicationConfigVariables:
     - BALENA_HOST_CONFIG_gpu_mem: 128
