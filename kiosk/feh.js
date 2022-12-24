@@ -30,6 +30,7 @@ export default class FEH extends EventEmitter {
       this.reloadInterval,
       "--slideshow-delay",
       this.slideshowDelay,
+      "--auto-zoom",
       this.basePath,
     ];
     this.process = spawn("feh", params);

@@ -17,9 +17,9 @@ services:
       - "x11:/tmp/.X11-unix"
       - "photos:/photos"
     environment:
-      - WIDTH=800
-      - ALBUM_URL=https://goo.gl/photos/XQ2sGUyPe3swFVga6
-      - CRON=0 0 * * *
+      - WIDTH=${WIDTH}
+      - ALBUM_URL=${ALBUM_URL}
+      - CRON=${CRON}
       - DOWNLOAD_LOCATION=/photos
   wifi-connect:
     build: ./wifi-connect
@@ -30,6 +30,7 @@ services:
       - NET_ADMIN
     environment:
       DBUS_SYSTEM_BUS_ADDRESS: "unix:path=/host/run/dbus/system_bus_socket"
+      PORTAL_SSID: "Picture frame"
   # glxgears:
   #   build: ./glxgears
   #   restart: always
