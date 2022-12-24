@@ -1,0 +1,37 @@
+name: rpi-zero-picture-frame
+description: >-
+  Raspberry Pi-powered digital photo frame that displays images from a Google
+  Photos album
+type: sw.application
+post-provisioning: >-
+  Since the older raspberry pi's don't have enough memory to run balenaDash, we
+  use a simple image viewer called feh that runs on an X server.
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: "https://github.com/DrSkunk/rpi-zero-picture-frame/"
+  logo:
+    type: blob.asset
+    data:
+      url: >-
+        https://raw.githubusercontent.com/DrSkunk/rpi-zero-picture-frame/tree/main/logo.png
+data:
+  applicationConfigVariables:
+    - BALENA_HOST_CONFIG_gpu_mem: 128
+  applicationEnvironmentVariables:
+    - ALBUM_URL: https://goo.gl/photos/XQ2sGUyPe3swFVga
+    - CRON: 0 0 * * *
+    - WIDTH: 1366
+    - DELAY: 10
+    - RELOAD_INTERVAL: 60
+  defaultDeviceType: raspberrypi4-64
+  supportedDeviceTypes:
+    - raspberry-pi
+    - raspberrypi4-64
+    - raspberrypi3
+    - raspberrypi3-64
+    - intel-nuc
+    - genericx86-64-ext
+    - raspberrypi400-64
+version: 1.0.0

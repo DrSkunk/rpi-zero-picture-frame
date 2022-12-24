@@ -5,7 +5,10 @@ import { fetchImages, updateImages } from "./google-photos.js";
 import config from "./config.js";
 import FEH from "./feh.js";
 
-const feh = new FEH(config.downloadLocation);
+const feh = new FEH(config.downloadLocation, {
+  reloadInterval: config.reloadInterval,
+  slideshowDelay: config.delay,
+});
 
 async function update() {
   try {
